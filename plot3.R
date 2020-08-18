@@ -35,10 +35,16 @@ NEI_summarized$type <- factor(NEI_summarized$type, levels = c("Point", "Non-poin
 png("plot3.png")
 
 ### Draw the plot 1
-ggplot(NEI_summarized, aes(x = year, y = total, fill = type)) +
+ggplot(NEI_summarized, aes(x = year, y = total)) +
   geom_col() +
-  facet_grid(cols = vars(type)) +
-  guides(fill = F)
+  facet_wrap(vars(type)) +
+  guides(fill = F) +
+  labs(
+    title = expression(
+      "Total emissions of PM" [2.5] * " in the US based on the source type"
+    ),
+    y = expression("total emissions of PM" [2.5]* " in tons")
+  )
 
 ### Close the PNG device
 dev.off()
