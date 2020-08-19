@@ -42,3 +42,22 @@ ggplot(data, aes(x = factor(year), y = total)) +
 
 ### Close the PNG device
 dev.off()
+
+### Calculate the percentage change of total emissions compared to previous year for each city ###
+data_change <- data %>% 
+  mutate(Change = (total/lag(total) - 1) * 100) %>% 
+  filter(!is.na(Change))
+
+### Open the PNG device
+png("plot6b.png")
+
+### Draw the plot 1
+ggplot(data_change, aes(x = factor(year), y = Change)) +
+  geom_col() +
+  facet_grid(cols = vars(city)) + 
+  labs(title = expression("Percentage change of PM" [2.5]* " compared to the previous year"),
+       x = "year",
+       y = expression("percentage change of PM" [2.5]*""))
+
+### Close the PNG device
+dev.off()
