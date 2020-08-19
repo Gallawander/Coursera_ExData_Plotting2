@@ -247,6 +247,6 @@ ggplot(data, aes(x = factor(year), y = total)) +
        y = expression("total emissions of PM" [2.5]* " in tons"))
 ```
 
-**Plot 6 shows that total PM[2.5] emissions from motor vehicles in Baltimore city rapidly decreased even as early as 2002 and the decline continued until 2008. On the other hand total PM[2.5] emissions from motor vehicles in Los Angeles increased first but decline was apparent in 2008.**
+**Plot 6 shows that total PM[2.5] emissions from motor vehicles in Baltimore city rapidly decreased even as early as 2002 and the decline continued until 2008. On the other hand total PM[2.5] emissions from motor vehicles in Los Angeles increased first but decline compared to previous year was apparent in 2008.**
  
 ![plot6](plot6.png)
