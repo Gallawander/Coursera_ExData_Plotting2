@@ -250,3 +250,24 @@ ggplot(data, aes(x = factor(year), y = total)) +
 **Plot 6 shows that total PM[2.5] emissions from motor vehicles in Baltimore city rapidly decreased even as early as 2002 and the decline continued until 2008. On the other hand total PM[2.5] emissions from motor vehicles in Los Angeles increased first but decline compared to previous year was apparent in 2008.**
  
 ![plot6](plot6.png)
+
+To calculate the percentage change, we updated the dataset and added the variable `Change` which expresses the percentage change of the total total PM[2.5] emissions compared to previous year.
+```
+data_change <- data %>% 
+  mutate(Change = (total/lag(total) - 1) * 100) %>% 
+  filter(!is.na(Change))
+```
+
+Using the `ggplot2` plotting system, we plotted particular percentage change of the total PM[2.5] emissions.
+```
+ggplot(data_change, aes(x = factor(year), y = Change)) +
+  geom_col() +
+  facet_grid(cols = vars(city)) + 
+  labs(title = expression("Percentage change of PM" [2.5]* " compared to the previous year"),
+       x = "year",
+       y = expression("percentage change of PM" [2.5]*""))
+```
+
+**Plot 6b shows how much total PM[2.5] emissions from motor vehicles in Baltimore city have been reduced each year compared to the previous one. Similarly, for Los Angeles, the percentage increase of total PM[2.5] emissions from motor vehicles is visible.**
+
+![plot6b](plot6b.png)
